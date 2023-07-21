@@ -1,65 +1,107 @@
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 public class ExploringExceptions {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        String num_strs[] = { "Hello", "Java", null, "Program" };
+        System.out.println("Contents of the file:\n:");
 
-        for (String str : num_strs) {
+        FileInputStream myfile = null;
 
-            System.out.println(str.charAt(0));
-            System.out.println(str.charAt(2));
-            System.out.println(str.charAt(4)); // java.lang.StringIndexOutOfBoundsException
+        try {
+
+            myfile = new FileInputStream("/Users/juan/code/skillsoft/java-novice-to-javanista/track-2-java-apprentice/handling-errors-an-introduction-to-exceptions/JavaExceptionHandling/myFile.txt");
+
+            DataInputStream readFile = new DataInputStream(myfile);
+
+            while (true) {
+
+                System.out.println(readFile.readUTF()); // java.io.EOFException
+            }
+        } catch (EOFException e) {
+
+            System.out.println("An EOFException has been thrown.");
+            e.printStackTrace();
         }
     }
 
 //    public static void main(String[] args) {
 //
-//        String num_strs[] = { "Hello", "Java", null, "Program" };
+//        System.out.println("Contents of the file:\n:");
 //
-//        for (String str : num_strs) {
+//        FileInputStream myfile = null;
 //
-//            System.out.println(str);
-//        }
+//        try {
 //
-//        num_strs[4] = "Python"; // java.lang.ArrayIndexOutOfBoundsException
-//        System.out.println(num_strs[4]);
-//    }
-
-//    public static void main(String[] args) {
+//            myfile = new FileInputStream("/Users/juan/code/skillsoft/java-novice-to-javanista/track-2-java-apprentice/handling-errors-an-introduction-to-exceptions/JavaExceptionHandling/myFile.txt");
 //
-//        String my_strings[] = { "Hello", "Java", null, "Program" };
+//            DataInputStream readFile = new DataInputStream(myfile);
 //
-//        for (String str : my_strings) {
+//            while (true) {
 //
-//            System.out.format("The string %s has a length of %d\n",
-//                    str.toUpperCase(), str.length()); // java.lang.NullPointerException
-//        }
-//    }
-
-//    public static void main(String[] args) {
+//                System.out.println(readFile.readUTF()); // java.io.EOFException
+//            }
+//        } catch (IOException e) {
 //
-//        String num_strs[] = {"3", "56", "345.34", "1250", "3456"};
-//
-//        for (String str: num_strs) {
-//
-//            int varInt = Integer.parseInt(str); // java.lang.NumberFormatException
-//
-//            System.out.println(varInt);
+//            System.out.println("An IOException has been thrown.");
+//            e.printStackTrace();
 //        }
 //    }
 
 //    public static void main(String[] args) {
 //
-//        int numerator = 100;
-//        int denominator = 5;
+//        System.out.println("Contents of the file:\n:");
 //
-//        while (denominator >= 0) {
+//        FileInputStream myfile = null;
 //
-//            int result = numerator / denominator; // java.lang.ArithmeticException
+//        try {
 //
-//            System.out.println(result);
+//            myfile = new FileInputStream("/Users/juan/code/skillsoft/java-novice-to-javanista/track-2-java-apprentice/handling-errors-an-introduction-to-exceptions/JavaExceptionHandling/myFile.txt");
 //
-//            denominator--;
+//            DataInputStream readFile = new DataInputStream(myfile);
+//
+//            while (true) {
+//
+//                System.out.println(readFile.readUTF()); // java.io.EOFException
+//            }
+//        } catch (Exception e) {
+//
+//            System.out.println("An Exception has been thrown.");
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public static void main(String[] args) throws FileNotFoundException {
+//
+//        try {
+//            FileReader file = new FileReader("/Users/juan/Downloads/samplefile.txt"); // java.io.FileNotFoundException
+//        } catch (FileNotFoundException e) {
+//
+//            System.out.println("\nThe file was not found. Create samplefile.txt and re-run.");
+//        }
+//
+//        System.out.println("The code execution is complete!");
+//    }
+
+//    public static void main(String[] args) throws FileNotFoundException {
+//
+//        FileReader file = new FileReader("/Users/juan/Downloads/samplefile.txt"); // java.io.FileNotFoundException
+//
+//    }
+
+//    public static void main(String[] args) {
+//
+//        try {
+//            FileReader file = new FileReader("/Users/juan/Downloads/samplefile.txt"); // java.io.FileNotFoundException
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//
+//            System.out.println("\nCaught the exception");
 //        }
 //    }
 }
